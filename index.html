@@ -1,20 +1,21 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#07090d" />
 
   <title>Saeed Karami — Senior Frontend Developer</title>
+
   <meta
     name="description"
-    content="Saeed Karami — Senior Frontend Developer with 10 years of experience building scalable, high-performance web applications with React.js, Next.js, Vue.js, Angular and TypeScript."
+    content="Saeed Karami — Senior Frontend Developer with 10 years of experience building scalable, high-performance web applications."
   />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
   <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Vazirmatn:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
 
@@ -24,34 +25,71 @@
       --bg-soft: #0d1118;
       --panel: #101621;
       --panel-2: #0c121b;
+
       --text: #f4f7fb;
       --muted: #96a0af;
+
       --line: #1e2938;
       --line-strong: #2a3a50;
+
       --accent: #7ee787;
       --accent-2: #79c0ff;
+
+      --shadow: 0 24px 70px rgba(0, 0, 0, .32);
+
       --max: 1180px;
       --radius: 22px;
-      --shadow: 0 24px 70px rgba(0,0,0,.32);
-      --display: "Manrope", system-ui, sans-serif;
-      --body: "DM Sans", system-ui, sans-serif;
+
+      --display: "Manrope", sans-serif;
+      --body: "DM Sans", sans-serif;
       --mono: "JetBrains Mono", monospace;
+      --fa: "Vazirmatn", sans-serif;
     }
 
-    * { box-sizing: border-box; }
+    html[data-theme="light"] {
+      --bg: #f7f9fc;
+      --bg-soft: #eef2f7;
+      --panel: #ffffff;
+      --panel-2: #f3f6fa;
 
-    html { scroll-behavior: smooth; }
+      --text: #101722;
+      --muted: #667085;
+
+      --line: #d9e0e8;
+      --line-strong: #c2ccd8;
+
+      --accent: #17883d;
+      --accent-2: #146cc7;
+
+      --shadow: 0 24px 70px rgba(31, 42, 55, .10);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
       color: var(--text);
       background:
-        radial-gradient(circle at 15% 0%, rgba(121,192,255,.09), transparent 32%),
-        radial-gradient(circle at 85% 12%, rgba(126,231,135,.08), transparent 30%),
+        radial-gradient(circle at 15% 0%, rgba(121,192,255,.08), transparent 30%),
+        radial-gradient(circle at 85% 12%, rgba(126,231,135,.08), transparent 28%),
         var(--bg);
+
       font-family: var(--body);
-      line-height: 1.6;
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
+      transition:
+        background-color .25s ease,
+        color .25s ease;
+    }
+
+    html[dir="rtl"] body {
+      font-family: var(--fa);
     }
 
     body::before {
@@ -59,24 +97,40 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      opacity: .22;
+      z-index: -1;
+
+      opacity: .18;
+
       background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+        linear-gradient(rgba(120,130,150,.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120,130,150,.12) 1px, transparent 1px);
+
       background-size: 48px 48px;
-      mask-image: linear-gradient(to bottom, black, transparent 90%);
+
+      mask-image:
+        linear-gradient(to bottom, black, transparent 90%);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      font: inherit;
     }
 
     ::selection {
       background: rgba(126,231,135,.25);
-      color: white;
     }
-
-    a { color: inherit; }
 
     .wrap {
       width: min(var(--max), calc(100% - 40px));
-      margin: auto;
+      margin-inline: auto;
       position: relative;
       z-index: 1;
     }
@@ -87,586 +141,1134 @@
       position: sticky;
       top: 0;
       z-index: 50;
+
+      background: color-mix(
+        in srgb,
+        var(--bg) 78%,
+        transparent
+      );
+
       backdrop-filter: blur(18px);
-      background: rgba(7,9,13,.72);
-      border-bottom: 1px solid rgba(255,255,255,.06);
+
+      border-bottom: 1px solid var(--line);
     }
 
     .nav-inner {
       min-height: 72px;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       gap: 20px;
     }
 
     .brand {
       display: flex;
       align-items: center;
+
       gap: 11px;
+
       text-decoration: none;
+
       font-family: var(--display);
       font-weight: 800;
+    }
+
+    html[dir="rtl"] .brand {
+      font-family: var(--fa);
     }
 
     .brand-mark {
       width: 34px;
       height: 34px;
-      border-radius: 10px;
+
       display: grid;
       place-items: center;
-      background: linear-gradient(
-        135deg,
-        rgba(126,231,135,.18),
-        rgba(121,192,255,.16)
-      );
+
+      border-radius: 10px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(126,231,135,.18),
+          rgba(121,192,255,.16)
+        );
+
       border: 1px solid var(--line-strong);
+
+      color: var(--accent);
+
       font-family: var(--mono);
       font-size: .78rem;
-      color: var(--accent);
     }
 
     .nav-links {
       display: flex;
+      align-items: center;
+
       gap: 24px;
+
       list-style: none;
-      margin: 0;
+
       padding: 0;
+      margin: 0;
     }
 
     .nav-links a {
-      text-decoration: none;
       color: var(--muted);
+
+      text-decoration: none;
+
       font-size: .92rem;
       font-weight: 600;
+
+      transition: color .2s;
     }
 
-    .nav-links a:hover { color: white; }
+    .nav-links a:hover {
+      color: var(--text);
+    }
 
-    .nav-cta {
-      text-decoration: none;
+    .nav-actions {
+      display: flex;
+      align-items: center;
+
+      gap: 8px;
+    }
+
+    .nav-control {
+      height: 40px;
+      min-width: 40px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 6px;
+
+      padding: 0 11px;
+
+      border-radius: 11px;
+
       border: 1px solid var(--line-strong);
-      padding: 10px 15px;
-      border-radius: 12px;
-      font-weight: 700;
+
+      background: var(--panel);
+
+      color: var(--text);
+
+      cursor: pointer;
+
+      transition:
+        transform .2s,
+        border-color .2s;
+    }
+
+    .nav-control:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+    }
+
+    .mobile-menu {
+      display: none;
+
+      border-top: 1px solid var(--line);
+
+      background: var(--bg);
+    }
+
+    .mobile-menu.open {
+      display: block;
+    }
+
+    .mobile-menu-inner {
+      width: min(var(--max), calc(100% - 30px));
+
+      margin-inline: auto;
+
+      padding: 14px 0 18px;
+
+      display: grid;
+
+      gap: 8px;
+    }
+
+    .mobile-menu a {
+      padding: 11px 4px;
+
+      text-decoration: none;
+
+      color: var(--muted);
+
+      font-weight: 600;
     }
 
     /* HERO */
 
     .hero {
       min-height: calc(100vh - 72px);
+
       display: grid;
       align-items: center;
+
       padding: 72px 0 64px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: minmax(0,1.2fr) minmax(320px,.8fr);
-      gap: 64px;
+
+      grid-template-columns:
+        minmax(0, 1.18fr)
+        minmax(320px, .82fr);
+
+      gap: clamp(40px, 6vw, 72px);
+
       align-items: center;
     }
 
     .kicker {
       display: inline-flex;
       align-items: center;
+
       gap: 10px;
+
+      padding: 8px 11px;
+
+      border: 1px solid var(--line);
+
+      border-radius: 999px;
+
+      color: var(--accent);
+
       font-family: var(--mono);
       font-size: .78rem;
-      color: var(--accent);
+
       text-transform: uppercase;
-      border: 1px solid var(--line);
-      padding: 8px 11px;
-      border-radius: 999px;
+    }
+
+    html[dir="rtl"] .kicker {
+      font-family: var(--fa);
+      text-transform: none;
     }
 
     .kicker::before {
       content: "";
+
       width: 7px;
       height: 7px;
+
       border-radius: 50%;
+
       background: var(--accent);
-      box-shadow: 0 0 0 5px rgba(126,231,135,.08);
+
+      box-shadow:
+        0 0 0 5px rgba(126,231,135,.08);
     }
 
     h1 {
       margin: 24px 0 0;
+
       font-family: var(--display);
-      font-size: clamp(3.6rem,8vw,7.4rem);
+
+      font-size:
+        clamp(3.6rem, 8vw, 7.4rem);
+
       line-height: .94;
+
       letter-spacing: -.06em;
+
       font-weight: 800;
+
+      overflow-wrap: anywhere;
+    }
+
+    html[dir="rtl"] h1 {
+      font-family: var(--fa);
+      letter-spacing: -.04em;
     }
 
     .name-accent {
       display: block;
+
       color: transparent;
-      -webkit-text-stroke: 1px rgba(244,247,251,.42);
+
+      -webkit-text-stroke:
+        1px
+        color-mix(
+          in srgb,
+          var(--text) 42%,
+          transparent
+        );
     }
 
     .hero-copy {
       max-width: 720px;
+
       margin-top: 28px;
-      font-size: 1.15rem;
+
       color: var(--muted);
+
+      font-size: clamp(1.03rem, 1.6vw, 1.18rem);
     }
 
-    .hero-copy strong { color: white; }
+    .hero-copy strong {
+      color: var(--text);
+    }
 
     .hero-actions {
       display: flex;
-      gap: 12px;
       flex-wrap: wrap;
+
+      gap: 12px;
+
       margin-top: 32px;
     }
 
     .btn {
+      min-height: 46px;
+
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 46px;
+
+      gap: 8px;
+
       padding: 0 17px;
+
       border-radius: 12px;
-      text-decoration: none;
-      font-weight: 700;
+
       border: 1px solid var(--line-strong);
-      transition: .2s;
+
+      text-decoration: none;
+
+      font-weight: 700;
+
+      transition:
+        transform .2s,
+        border-color .2s;
     }
 
-    .btn:hover { transform: translateY(-2px); }
+    .btn:hover {
+      transform: translateY(-2px);
+    }
 
     .btn.primary {
       background: var(--accent);
+
       color: #071009;
+
       border-color: var(--accent);
     }
 
-    .btn.secondary {
-      background: rgba(255,255,255,.025);
+    html[data-theme="light"] .btn.primary {
+      color: #fff;
     }
 
-    /* TERMINAL */
+    .btn.secondary {
+      background: var(--panel);
+    }
 
     .hero-card {
       border: 1px solid var(--line);
-      background: linear-gradient(
-        180deg,
-        rgba(255,255,255,.035),
-        rgba(255,255,255,.018)
-      );
+
+      background:
+        linear-gradient(
+          180deg,
+          color-mix(in srgb, var(--panel) 96%, transparent),
+          color-mix(in srgb, var(--panel-2) 96%, transparent)
+        );
+
       border-radius: var(--radius);
+
       box-shadow: var(--shadow);
+
       padding: 22px;
+
+      overflow: hidden;
     }
 
     .terminal-head {
       display: flex;
+
       gap: 7px;
+
       padding-bottom: 18px;
+
       border-bottom: 1px solid var(--line);
     }
 
     .terminal-head span {
       width: 9px;
       height: 9px;
+
       border-radius: 50%;
-      background: #263244;
+
+      background: var(--line-strong);
     }
 
     .terminal {
       padding-top: 18px;
+
       font-family: var(--mono);
+
       font-size: .84rem;
-      color: #c9d3df;
+
+      color: var(--text);
+
+      direction: ltr;
+      text-align: left;
+
+      overflow-wrap: anywhere;
     }
 
-    .terminal .line { margin: .6rem 0; }
-    .terminal .prompt { color: var(--accent); }
-    .terminal .muted { color: #697587; }
+    .terminal .line {
+      margin: .6rem 0;
+    }
+
+    .terminal .prompt {
+      color: var(--accent);
+    }
+
+    .terminal .muted {
+      color: var(--muted);
+    }
 
     .terminal .output {
       color: var(--accent-2);
+
       padding-left: 14px;
     }
 
     .metrics {
       display: grid;
-      grid-template-columns: repeat(4,1fr);
+
+      grid-template-columns: repeat(4, 1fr);
+
       gap: 10px;
+
       margin-top: 22px;
     }
 
     .metric {
       border: 1px solid var(--line);
+
       border-radius: 14px;
+
       padding: 15px;
     }
 
     .metric strong {
       display: block;
+
       font-family: var(--display);
+
       font-size: 1.4rem;
     }
 
     .metric span {
       display: block;
+
+      margin-top: 3px;
+
       color: var(--muted);
+
       font-size: .72rem;
     }
 
     /* GENERAL */
 
-    section { padding: 96px 0; }
+    section {
+      padding: 96px 0;
+    }
 
     .section-top {
       display: flex;
-      justify-content: space-between;
       align-items: end;
+      justify-content: space-between;
+
       gap: 24px;
+
       margin-bottom: 34px;
     }
 
     .eyebrow {
-      color: var(--accent);
-      font-family: var(--mono);
-      font-size: .78rem;
-      text-transform: uppercase;
-      letter-spacing: .08em;
       margin-bottom: 8px;
+
+      color: var(--accent);
+
+      font-family: var(--mono);
+
+      font-size: .78rem;
+
+      text-transform: uppercase;
+
+      letter-spacing: .08em;
+    }
+
+    html[dir="rtl"] .eyebrow {
+      font-family: var(--fa);
+      text-transform: none;
+      letter-spacing: 0;
     }
 
     h2 {
       margin: 0;
+
       font-family: var(--display);
-      font-size: clamp(2rem,4vw,3.2rem);
+
+      font-size:
+        clamp(2rem, 4vw, 3.2rem);
+
+      line-height: 1.08;
+
       letter-spacing: -.045em;
-      line-height: 1.05;
+    }
+
+    html[dir="rtl"] h2 {
+      font-family: var(--fa);
+      letter-spacing: -.025em;
     }
 
     .section-note {
       max-width: 520px;
-      color: var(--muted);
+
       margin: 0;
+
+      color: var(--muted);
     }
 
     /* PROJECTS */
 
     .project-grid {
       display: grid;
-      grid-template-columns: repeat(3,1fr);
+
+      grid-template-columns: repeat(3, 1fr);
+
       gap: 18px;
     }
 
     .project {
       min-height: 330px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: linear-gradient(
-        180deg,
-        rgba(255,255,255,.035),
-        rgba(255,255,255,.016)
-      );
-      padding: 24px;
-      text-decoration: none;
+
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: .25s;
+
+      padding: 24px;
+
+      border-radius: var(--radius);
+
+      border: 1px solid var(--line);
+
+      background:
+        linear-gradient(
+          180deg,
+          var(--panel),
+          var(--panel-2)
+        );
+
+      text-decoration: none;
+
+      transition:
+        transform .25s,
+        border-color .25s,
+        box-shadow .25s;
     }
 
     .project:hover {
       transform: translateY(-6px);
+
       border-color: var(--line-strong);
-      box-shadow: 0 24px 60px rgba(0,0,0,.24);
+
+      box-shadow:
+        0 24px 60px rgba(0,0,0,.18);
     }
 
     .project-type {
-      font-family: var(--mono);
-      font-size: .72rem;
-      text-transform: uppercase;
       color: var(--muted);
+
+      font-family: var(--mono);
+
+      font-size: .72rem;
+
+      text-transform: uppercase;
+    }
+
+    html[dir="rtl"] .project-type {
+      font-family: var(--fa);
+      text-transform: none;
     }
 
     .project h3 {
-      font-family: var(--display);
-      font-size: 1.7rem;
       margin: 18px 0 10px;
+
+      font-family: var(--display);
+
+      font-size: 1.7rem;
     }
 
     .project p {
-      color: var(--muted);
       margin: 0;
+
+      color: var(--muted);
     }
 
     .stack,
     .tags {
       display: flex;
       flex-wrap: wrap;
+
       gap: 7px;
     }
 
-    .stack { margin-top: 24px; }
+    .stack {
+      margin-top: 24px;
+    }
 
     .stack span,
     .tag {
-      border: 1px solid var(--line);
-      border-radius: 999px;
       padding: 6px 9px;
+
+      border: 1px solid var(--line);
+
+      border-radius: 999px;
+
+      color: var(--text);
+
+      background: var(--panel-2);
+
       font-family: var(--mono);
+
       font-size: .72rem;
-      color: #c9d3df;
+
+      direction: ltr;
+      unicode-bidi: isolate;
     }
 
     .project-link {
-      margin-top: 24px;
       display: flex;
+      align-items: center;
       justify-content: space-between;
+
+      margin-top: 24px;
+
       color: var(--accent);
+
       font-family: var(--mono);
+
       font-size: .78rem;
+
+      direction: ltr;
     }
 
     /* EXPERIENCE */
 
     .experience {
       display: grid;
-      grid-template-columns: 300px 1fr;
+
+      grid-template-columns:
+        300px
+        minmax(0, 1fr);
+
       gap: 50px;
     }
 
     .experience-intro {
       position: sticky;
+
       top: 108px;
+
       align-self: start;
     }
 
-    .experience-intro p { color: var(--muted); }
+    .experience-intro p {
+      color: var(--muted);
+    }
 
-    .jobs { border-top: 1px solid var(--line); }
+    .jobs {
+      border-top: 1px solid var(--line);
+    }
 
     .job {
       display: grid;
-      grid-template-columns: 150px 1fr;
+
+      grid-template-columns:
+        150px
+        minmax(0, 1fr);
+
       gap: 22px;
+
       padding: 28px 0;
+
       border-bottom: 1px solid var(--line);
     }
 
     .job-date {
       color: var(--muted);
+
       font-family: var(--mono);
+
       font-size: .76rem;
+
+      direction: ltr;
+
+      unicode-bidi: isolate;
     }
 
     .job h3 {
       margin: 0;
+
       font-family: var(--display);
+
       font-size: 1.35rem;
+
+      overflow-wrap: anywhere;
+    }
+
+    html[dir="rtl"] .job h3 {
+      font-family: var(--fa);
     }
 
     .job-role {
-      color: var(--accent-2);
-      font-size: .9rem;
       margin-top: 3px;
+
+      color: var(--accent-2);
+
+      font-size: .9rem;
+    }
+
+    .job-role .tech {
+      direction: ltr;
+
+      unicode-bidi: isolate;
+
+      display: inline;
     }
 
     .job p {
       margin: 12px 0 0;
+
       color: var(--muted);
     }
 
     .job-links {
       display: flex;
-      gap: 12px;
       flex-wrap: wrap;
+
+      gap: 12px;
+
       margin-top: 13px;
     }
 
     .job-links a {
-      font-family: var(--mono);
-      font-size: .74rem;
       color: var(--accent);
+
+      font-family: var(--mono);
+
+      font-size: .74rem;
+
       text-decoration: none;
+
+      direction: ltr;
+
+      unicode-bidi: isolate;
     }
 
     /* SKILLS */
 
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(2,1fr);
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
       gap: 18px;
     }
 
     .skill-card {
-      border: 1px solid var(--line);
-      border-radius: 18px;
       padding: 22px;
-      background: rgba(255,255,255,.018);
+
+      border: 1px solid var(--line);
+
+      border-radius: 18px;
+
+      background: var(--panel);
     }
 
     .skill-card h3 {
       margin: 0 0 14px;
+
       font-family: var(--display);
+    }
+
+    html[dir="rtl"] .skill-card h3 {
+      font-family: var(--fa);
     }
 
     .tag {
       border-radius: 9px;
-      background: var(--panel-2);
     }
 
     /* ABOUT */
 
     .about-grid {
       display: grid;
-      grid-template-columns: 1.1fr .9fr;
+
+      grid-template-columns:
+        1.1fr
+        .9fr;
+
       gap: 28px;
     }
 
     .about-card {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
       padding: 26px;
+
+      border: 1px solid var(--line);
+
+      border-radius: var(--radius);
+
+      background: var(--panel);
     }
 
     .about-card p {
-      color: var(--muted);
       margin: 0;
+
+      color: var(--muted);
     }
 
-    .about-card p + p { margin-top: 14px; }
+    .about-card p + p {
+      margin-top: 14px;
+    }
 
     .focus-list {
       display: grid;
+
       gap: 12px;
     }
 
     .focus-item {
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 15px 16px;
       display: flex;
+      align-items: center;
       justify-content: space-between;
+
+      gap: 16px;
+
+      padding: 15px 16px;
+
+      border: 1px solid var(--line);
+
+      border-radius: 14px;
+
       background: var(--bg-soft);
     }
 
-    .focus-item span:first-child { font-weight: 700; }
+    .focus-item span:first-child {
+      font-weight: 700;
+    }
 
     .focus-item span:last-child {
-      font-family: var(--mono);
       color: var(--muted);
+
+      font-family: var(--mono);
+
       font-size: .74rem;
+
+      direction: ltr;
+      unicode-bidi: isolate;
     }
 
     /* CONTACT */
 
     .contact-card {
-      border: 1px solid var(--line-strong);
-      border-radius: 28px;
-      padding: 38px;
-      background: var(--panel-2);
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+
       gap: 28px;
+
+      padding: 38px;
+
+      border: 1px solid var(--line-strong);
+
+      border-radius: 28px;
+
+      background:
+        radial-gradient(
+          circle at 90% 10%,
+          rgba(126,231,135,.08),
+          transparent 25%
+        ),
+        var(--panel-2);
     }
 
     .contact-card p {
-      color: var(--muted);
       max-width: 650px;
+
+      margin: 12px 0 0;
+
+      color: var(--muted);
     }
 
     .contact-links {
       display: flex;
-      gap: 10px;
       flex-wrap: wrap;
+
+      gap: 10px;
     }
 
     footer {
-      border-top: 1px solid var(--line);
       padding: 28px 0 42px;
+
+      border-top: 1px solid var(--line);
+
       color: var(--muted);
+
       font-size: .84rem;
     }
 
     .footer-row {
       display: flex;
       justify-content: space-between;
+
+      gap: 18px;
+
       flex-wrap: wrap;
     }
 
     .footer-links {
       display: flex;
+      flex-wrap: wrap;
+
       gap: 16px;
     }
 
-    .footer-links a { text-decoration: none; }
+    .footer-links a {
+      text-decoration: none;
+    }
+
+    /* ANIMATION */
 
     .reveal {
       opacity: 0;
+
       transform: translateY(14px);
-      transition: .55s;
+
+      transition:
+        opacity .55s ease,
+        transform .55s ease;
     }
 
     .reveal.visible {
       opacity: 1;
+
       transform: none;
     }
 
-    @media(max-width:980px) {
-      .hero-grid { grid-template-columns:1fr; }
-      .project-grid { grid-template-columns:1fr 1fr; }
-      .experience { grid-template-columns:1fr; }
-      .experience-intro { position:static; }
-      .about-grid { grid-template-columns:1fr; }
+    /* RTL specifics */
+
+    html[dir="rtl"] .hero-copy,
+    html[dir="rtl"] .section-note,
+    html[dir="rtl"] .job p,
+    html[dir="rtl"] .about-card p,
+    html[dir="rtl"] .contact-card p {
+      text-align: right;
     }
 
-    @media(max-width:720px) {
-      .wrap { width:calc(100% - 26px); }
+    html[dir="rtl"] .terminal {
+      direction: ltr;
+      text-align: left;
+    }
 
-      .nav-links { display:none; }
+    /* TABLET */
 
-      .hero {
-        min-height:auto;
-        padding:54px 0;
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
       }
 
-      h1 { font-size:clamp(3.2rem,18vw,5rem); }
+      .hero-card {
+        max-width: 760px;
+      }
 
-      .metrics { grid-template-columns:1fr 1fr; }
+      .project-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
 
-      section { padding:72px 0; }
+      .experience {
+        grid-template-columns: 1fr;
+      }
 
-      .section-top { display:block; }
+      .experience-intro {
+        position: static;
+      }
 
-      .section-note { margin-top:14px; }
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 760px) {
+      .wrap {
+        width: calc(100% - 28px);
+      }
+
+      .nav-inner {
+        min-height: 64px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: inline-flex;
+      }
+
+      .nav-control .label {
+        display: none;
+      }
+
+      .nav-control {
+        padding: 0 10px;
+      }
+
+      .brand > span:last-child {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+
+        padding: 52px 0 40px;
+      }
+
+      h1 {
+        font-size:
+          clamp(3.1rem, 17vw, 5rem);
+      }
+
+      .hero-copy {
+        margin-top: 22px;
+      }
+
+      .hero-actions {
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        width: 100%;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .hero-card {
+        padding: 18px;
+      }
+
+      .metrics {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      section {
+        padding: 68px 0;
+      }
+
+      .section-top {
+        display: block;
+      }
+
+      .section-note {
+        margin-top: 14px;
+      }
 
       .project-grid,
       .skills-grid {
-        grid-template-columns:1fr;
+        grid-template-columns: 1fr;
+      }
+
+      .project {
+        min-height: 0;
       }
 
       .job {
-        grid-template-columns:1fr;
-        gap:8px;
+        grid-template-columns: 1fr;
+
+        gap: 8px;
       }
 
       .contact-card {
-        display:block;
-        padding:28px;
+        display: block;
+
+        padding: 26px 20px;
       }
 
-      .contact-links { margin-top:22px; }
+      .contact-links {
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        margin-top: 22px;
+      }
+
+      .focus-item {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 5px;
+      }
+
+      .footer-row {
+        flex-direction: column;
+      }
     }
 
-    @media(prefers-reduced-motion:reduce) {
+    @media (max-width: 420px) {
+      .metrics {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .metric {
+        padding: 12px;
+      }
+
+      .terminal {
+        font-size: .76rem;
+      }
+
+      h1 {
+        font-size: clamp(2.9rem, 18vw, 4.5rem);
+      }
+
+      .nav-actions {
+        gap: 5px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
       * {
-        scroll-behavior:auto !important;
-        transition:none !important;
+        scroll-behavior: auto !important;
+
+        animation: none !important;
+
+        transition: none !important;
       }
 
       .reveal {
-        opacity:1;
-        transform:none;
+        opacity: 1;
+
+        transform: none;
       }
     }
   </style>
@@ -675,68 +1277,226 @@
 <body>
 
 <nav class="nav">
+
   <div class="wrap nav-inner">
 
     <a href="#top" class="brand">
-      <span class="brand-mark">SK</span>
-      <span>Saeed Karami</span>
+
+      <span class="brand-mark">
+        SK
+      </span>
+
+      <span>
+        Saeed Karami
+      </span>
+
     </a>
 
     <ul class="nav-links">
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#about">About</a></li>
+
+      <li>
+        <a
+          href="#projects"
+          data-i18n="nav.projects"
+        >
+          Projects
+        </a>
+      </li>
+
+      <li>
+        <a
+          href="#experience"
+          data-i18n="nav.experience"
+        >
+          Experience
+        </a>
+      </li>
+
+      <li>
+        <a
+          href="#skills"
+          data-i18n="nav.skills"
+        >
+          Skills
+        </a>
+      </li>
+
+      <li>
+        <a
+          href="#about"
+          data-i18n="nav.about"
+        >
+          About
+        </a>
+      </li>
+
     </ul>
 
-    <a class="nav-cta"
-       href="mailto:i.karamisaeed@outlook.com">
-      Contact
-    </a>
+    <div class="nav-actions">
+
+      <button
+        class="nav-control"
+        id="langToggle"
+        type="button"
+        aria-label="Change language"
+      >
+        🌐
+        <span
+          class="label"
+          id="langLabel"
+        >
+          FA
+        </span>
+      </button>
+
+      <button
+        class="nav-control"
+        id="themeToggle"
+        type="button"
+        aria-label="Change theme"
+      >
+        <span id="themeIcon">
+          ☀
+        </span>
+      </button>
+
+      <button
+        class="nav-control mobile-menu-btn"
+        id="menuToggle"
+        type="button"
+        aria-label="Open menu"
+      >
+        ☰
+      </button>
+
+    </div>
 
   </div>
+
+  <div
+    class="mobile-menu"
+    id="mobileMenu"
+  >
+
+    <div class="mobile-menu-inner">
+
+      <a
+        href="#projects"
+        data-i18n="nav.projects"
+      >
+        Projects
+      </a>
+
+      <a
+        href="#experience"
+        data-i18n="nav.experience"
+      >
+        Experience
+      </a>
+
+      <a
+        href="#skills"
+        data-i18n="nav.skills"
+      >
+        Skills
+      </a>
+
+      <a
+        href="#about"
+        data-i18n="nav.about"
+      >
+        About
+      </a>
+
+      <a
+        href="#contact"
+        data-i18n="nav.contact"
+      >
+        Contact
+      </a>
+
+    </div>
+
+  </div>
+
 </nav>
 
+
 <main id="top">
+
 
 <header class="hero">
 
 <div class="wrap hero-grid">
 
+
 <div>
 
-<span class="kicker">
+<span
+  class="kicker"
+  data-i18n="hero.role"
+>
 Senior Frontend Developer
 </span>
 
+
 <h1>
+
+<span data-i18n="hero.firstName">
 Saeed
-<span class="name-accent">Karami</span>
+</span>
+
+<span
+  class="name-accent"
+  data-i18n="hero.lastName"
+>
+Karami
+</span>
+
 </h1>
 
-<p class="hero-copy">
+
+<p
+  class="hero-copy"
+  data-i18n-html="hero.description"
+>
 I build
-<strong>scalable, high-performance web applications</strong>
+<strong>
+scalable, high-performance web applications
+</strong>
 with React, Next.js, TypeScript, Vue and Angular —
 with a strong focus on frontend architecture,
 rendering strategy, performance and product quality.
 </p>
 
+
 <div class="hero-actions">
 
-<a class="btn primary" href="#projects">
+<a
+  class="btn primary"
+  href="#projects"
+  data-i18n="hero.workButton"
+>
 View selected work ↓
 </a>
 
-<a class="btn secondary"
-href="https://github.com/karami-saeed"
-target="_blank">
+
+<a
+  class="btn secondary"
+  href="https://github.com/karami-saeed"
+  target="_blank"
+  rel="noopener"
+>
 GitHub ↗
 </a>
 
-<a class="btn secondary"
-href="https://www.linkedin.com/in/saeed-karami-3a31892a7"
-target="_blank">
+
+<a
+  class="btn secondary"
+  href="https://www.linkedin.com/in/saeed-karami-3a31892a7"
+  target="_blank"
+  rel="noopener"
+>
 LinkedIn ↗
 </a>
 
@@ -747,26 +1507,56 @@ LinkedIn ↗
 
 <aside class="hero-card">
 
+
 <div class="terminal-head">
+
 <span></span>
 <span></span>
 <span></span>
+
 </div>
+
 
 <div class="terminal">
 
+
 <div class="line">
-<span class="prompt">saeed@frontend</span>:~$ whoami
+
+<span class="prompt">
+saeed@frontend
+</span>
+
+<span class="muted">
+:~$
+</span>
+
+whoami
+
 </div>
 
-<div class="output">
+
+<div
+  class="output"
+  data-i18n="terminal.role"
+>
 Senior Frontend Developer
 </div>
 
 
 <div class="line">
-<span class="prompt">saeed@frontend</span>:~$ stack --core
+
+<span class="prompt">
+saeed@frontend
+</span>
+
+<span class="muted">
+:~$
+</span>
+
+stack --core
+
 </div>
+
 
 <div class="output">
 React · Next.js · TypeScript · Vue · Angular
@@ -774,8 +1564,19 @@ React · Next.js · TypeScript · Vue · Angular
 
 
 <div class="line">
-<span class="prompt">saeed@frontend</span>:~$ focus
+
+<span class="prompt">
+saeed@frontend
+</span>
+
+<span class="muted">
+:~$
+</span>
+
+focus
+
 </div>
+
 
 <div class="output">
 Architecture · SSR/CSR/SSG · PWA · Performance
@@ -783,41 +1584,91 @@ Architecture · SSR/CSR/SSG · PWA · Performance
 
 
 <div class="line">
-<span class="prompt">saeed@frontend</span>:~$ location
+
+<span class="prompt">
+saeed@frontend
+</span>
+
+<span class="muted">
+:~$
+</span>
+
+location
+
 </div>
 
-<div class="output">
+
+<div
+  class="output"
+  data-i18n="terminal.location"
+>
 Tehran, Iran
 </div>
+
 
 </div>
 
 
 <div class="metrics">
 
-<div class="metric">
-<strong>10</strong>
-<span>years experience</span>
-</div>
 
 <div class="metric">
-<strong>9</strong>
-<span>professional roles</span>
+
+<strong>
+10
+</strong>
+
+<span data-i18n="metrics.years">
+years experience
+</span>
+
 </div>
+
 
 <div class="metric">
-<strong>4</strong>
-<span>major frameworks</span>
+
+<strong>
+9
+</strong>
+
+<span data-i18n="metrics.roles">
+professional roles
+</span>
+
 </div>
+
 
 <div class="metric">
-<strong>3</strong>
-<span>featured projects</span>
-</div>
+
+<strong>
+4
+</strong>
+
+<span data-i18n="metrics.frameworks">
+major frameworks
+</span>
 
 </div>
+
+
+<div class="metric">
+
+<strong>
+3
+</strong>
+
+<span data-i18n="metrics.projects">
+featured projects
+</span>
+
+</div>
+
+
+</div>
+
 
 </aside>
+
 
 </div>
 
@@ -828,21 +1679,31 @@ Tehran, Iran
 
 <div class="wrap reveal">
 
+
 <div class="section-top">
 
 <div>
 
-<div class="eyebrow">
+<div
+  class="eyebrow"
+  data-i18n="projects.eyebrow"
+>
 Selected projects
 </div>
 
-<h2>
+<h2
+  data-i18n="projects.title"
+>
 Things I've shipped
 </h2>
 
 </div>
 
-<p class="section-note">
+
+<p
+  class="section-note"
+  data-i18n="projects.description"
+>
 A selection of production-oriented products focused on
 real user workflows, scalable frontend architecture
 and product delivery.
@@ -854,109 +1715,175 @@ and product delivery.
 <div class="project-grid">
 
 
-<a class="project"
-href="https://mentorjet.org"
-target="_blank">
+<a
+  class="project"
+  href="https://mentorjet.org"
+  target="_blank"
+  rel="noopener"
+>
 
 <div>
 
-<span class="project-type">
+<span
+  class="project-type"
+  data-i18n="projects.mentor.type"
+>
 Mentorship platform
 </span>
 
-<h3>MentorJet</h3>
+<h3>
+MentorJet
+</h3>
 
-<p>
+<p
+  data-i18n="projects.mentor.description"
+>
 A platform for booking and managing 1:1 mentorship
 sessions, including mentor profiles, scheduling,
 booking and session management.
 </p>
 
+
 <div class="stack">
+
 <span>React</span>
 <span>Next.js</span>
 <span>Tailwind</span>
 <span>Prisma</span>
 <span>PostgreSQL</span>
+
 </div>
 
 </div>
+
 
 <div class="project-link">
-<span>mentorjet.org</span>
-<span>↗</span>
+
+<span>
+mentorjet.org
+</span>
+
+<span>
+↗
+</span>
+
 </div>
 
 </a>
 
 
-<a class="project"
-href="https://varzeshkar.com"
-target="_blank">
+
+<a
+  class="project"
+  href="https://varzeshkar.com"
+  target="_blank"
+  rel="noopener"
+>
 
 <div>
 
-<span class="project-type">
+<span
+  class="project-type"
+  data-i18n="projects.varzeshkar.type"
+>
 Fitness platform
 </span>
 
-<h3>Varzeshkar</h3>
+<h3>
+Varzeshkar
+</h3>
 
-<p>
+<p
+  data-i18n="projects.varzeshkar.description"
+>
 AI-driven fitness planning with smart discovery
 and booking flows for trainers and gyms.
 </p>
 
+
 <div class="stack">
+
 <span>Vue</span>
 <span>Nuxt</span>
 <span>Tailwind</span>
 <span>AI</span>
+
 </div>
 
 </div>
+
 
 <div class="project-link">
-<span>varzeshkar.com</span>
-<span>↗</span>
+
+<span>
+varzeshkar.com
+</span>
+
+<span>
+↗
+</span>
+
 </div>
 
 </a>
 
 
-<a class="project"
-href="https://afaghseir.ir"
-target="_blank">
+
+<a
+  class="project"
+  href="https://afaghseir.ir"
+  target="_blank"
+  rel="noopener"
+>
 
 <div>
 
-<span class="project-type">
+<span
+  class="project-type"
+  data-i18n="projects.afagh.type"
+>
 Travel platform
 </span>
 
-<h3>AfaqSeir</h3>
+<h3>
+AfaqSeir
+</h3>
 
-<p>
+<p
+  data-i18n="projects.afagh.description"
+>
 Tourism and pilgrimage service management with
 online booking, secure payment flows and modular
 frontend architecture.
 </p>
 
+
 <div class="stack">
+
 <span>React</span>
 <span>Next.js</span>
 <span>Tailwind</span>
 <span>Payments</span>
+
 </div>
 
 </div>
+
 
 <div class="project-link">
-<span>afaghseir.ir</span>
-<span>↗</span>
+
+<span>
+afaghseir.ir
+</span>
+
+<span>
+↗
+</span>
+
 </div>
 
 </a>
+
 
 </div>
 
@@ -965,27 +1892,39 @@ frontend architecture.
 </section>
 
 
+
 <section id="experience">
 
 <div class="wrap experience reveal">
 
+
 <div class="experience-intro">
 
-<div class="eyebrow">
+<div
+  class="eyebrow"
+  data-i18n="experience.eyebrow"
+>
 Professional experience
 </div>
 
-<h2>
+
+<h2
+  data-i18n="experience.title"
+>
 10 years in frontend engineering
 </h2>
 
-<p>
+
+<p
+  data-i18n="experience.description"
+>
 Fintech, payments, enterprise systems,
 streaming platforms and marketplaces —
 mostly in senior frontend roles.
 </p>
 
 </div>
+
 
 
 <div class="jobs">
@@ -999,22 +1938,36 @@ Jan 2026 — Jun 2026
 
 <div>
 
-<h3>Tosan Techno</h3>
+<h3>
+Tosan Techno
+</h3>
 
 <div class="job-role">
-Senior Frontend Developer · React · Next.js · TypeScript
+
+<span data-i18n="common.seniorFrontend">
+Senior Frontend Developer
+</span>
+
+·
+
+<span class="tech">
+React · Next.js · TypeScript
+</span>
+
 </div>
 
-<p>
-Led frontend architecture and development of the
-Taksa TSP PWA, implementing offline-first corporate
-tax workflows and reusable components.
+<p data-i18n="experience.tosan">
+Led frontend architecture and development of the Taksa TSP PWA,
+implementing offline-first corporate tax workflows and reusable components.
 </p>
 
 <div class="job-links">
 
-<a href="https://pwa.taksatsp.ir"
-target="_blank">
+<a
+  href="https://pwa.taksatsp.ir"
+  target="_blank"
+  rel="noopener"
+>
 Taksa TSP ↗
 </a>
 
@@ -1025,6 +1978,7 @@ Taksa TSP ↗
 </article>
 
 
+
 <article class="job">
 
 <div class="job-date">
@@ -1033,22 +1987,36 @@ Aug 2025 — Jan 2026
 
 <div>
 
-<h3>Novin Tech</h3>
+<h3>
+Novin Tech
+</h3>
 
 <div class="job-role">
-Senior Frontend Developer · React · Next.js
+
+<span data-i18n="common.seniorFrontend">
+Senior Frontend Developer
+</span>
+
+·
+
+<span class="tech">
+React · Next.js
+</span>
+
 </div>
 
-<p>
-Developed React/Next.js applications including
-a secure open-banking loan workflow while improving
-maintainability through code reviews and merge requests.
+<p data-i18n="experience.novin">
+Developed React/Next.js applications including a secure open-banking loan workflow,
+while improving maintainability through code reviews and merge-request standards.
 </p>
 
 <div class="job-links">
 
-<a href="https://novin.tech"
-target="_blank">
+<a
+  href="https://novin.tech"
+  target="_blank"
+  rel="noopener"
+>
 novin.tech ↗
 </a>
 
@@ -1057,6 +2025,7 @@ novin.tech ↗
 </div>
 
 </article>
+
 
 
 <article class="job">
@@ -1072,29 +2041,47 @@ Farapardazan Arvand Omid — OmidPay
 </h3>
 
 <div class="job-role">
-Senior Frontend Developer · React · Next.js · Vue
+
+<span data-i18n="common.seniorFrontend">
+Senior Frontend Developer
+</span>
+
+·
+
+<span class="tech">
+React · Next.js · Vue
+</span>
+
 </div>
 
-<p>
-Led a 5-person frontend team to refactor OmidPay
-and develop Nazar/Nanino platforms while integrating
-customized Metabase analytics dashboards.
+<p data-i18n="experience.omid">
+Led a 5-person frontend team to refactor OmidPay and develop Nazar/Nanino platforms;
+integrated customized Metabase analytics dashboards.
 </p>
 
 <div class="job-links">
 
-<a href="https://omidpayment.ir"
-target="_blank">
+<a
+  href="https://omidpayment.ir"
+  target="_blank"
+  rel="noopener"
+>
 OmidPay ↗
 </a>
 
-<a href="https://pwa.nazar.ir"
-target="_blank">
+<a
+  href="https://pwa.nazar.ir"
+  target="_blank"
+  rel="noopener"
+>
 Nazar ↗
 </a>
 
-<a href="https://nanino.ir"
-target="_blank">
+<a
+  href="https://nanino.ir"
+  target="_blank"
+  rel="noopener"
+>
 Nanino ↗
 </a>
 
@@ -1103,6 +2090,7 @@ Nanino ↗
 </div>
 
 </article>
+
 
 
 <article class="job">
@@ -1118,18 +2106,31 @@ Bastar Hooshmand Rasa Ava — Shenoto
 </h3>
 
 <div class="job-role">
-Senior Frontend Developer · Vue · Angular
+
+<span data-i18n="common.seniorFrontend">
+Senior Frontend Developer
+</span>
+
+·
+
+<span class="tech">
+Vue · Angular
+</span>
+
 </div>
 
-<p>
-Built Shenoto's admin dashboard and user-facing
-features for its audio-streaming platform.
+<p data-i18n="experience.shenoto">
+Built Shenoto's admin dashboard and user-facing features
+for its audio-streaming platform.
 </p>
 
 <div class="job-links">
 
-<a href="https://shenoto.com"
-target="_blank">
+<a
+  href="https://shenoto.com"
+  target="_blank"
+  rel="noopener"
+>
 shenoto.com ↗
 </a>
 
@@ -1138,6 +2139,7 @@ shenoto.com ↗
 </div>
 
 </article>
+
 
 
 <article class="job">
@@ -1153,24 +2155,39 @@ Danesh Parsian — Dapa
 </h3>
 
 <div class="job-role">
-Senior Frontend Developer · React · Vue
+
+<span data-i18n="common.seniorFrontend">
+Senior Frontend Developer
+</span>
+
+·
+
+<span class="tech">
+React · Vue
+</span>
+
 </div>
 
-<p>
+<p data-i18n="experience.dapa">
 Developed the Baya marketplace and refactored
-Dapa frontend applications, improving component
-reuse and maintainability.
+Dapa frontend applications, improving component reuse and maintainability.
 </p>
 
 <div class="job-links">
 
-<a href="https://baya.ir"
-target="_blank">
+<a
+  href="https://baya.ir"
+  target="_blank"
+  rel="noopener"
+>
 Baya ↗
 </a>
 
-<a href="https://dapa.ir"
-target="_blank">
+<a
+  href="https://dapa.ir"
+  target="_blank"
+  rel="noopener"
+>
 Dapa ↗
 </a>
 
@@ -1179,6 +2196,7 @@ Dapa ↗
 </div>
 
 </article>
+
 
 
 <article class="job">
@@ -1194,19 +2212,31 @@ Tarh Andishan Pouya
 </h3>
 
 <div class="job-role">
-Senior Frontend Developer · React
+
+<span data-i18n="common.seniorFrontend">
+Senior Frontend Developer
+</span>
+
+·
+
+<span class="tech">
+React
+</span>
+
 </div>
 
-<p>
-Developed modular React components and
-state-management workflows for an enterprise
-financial and accounting ERP.
+<p data-i18n="experience.pouya">
+Developed modular React components and state-management workflows
+for an enterprise financial and accounting ERP.
 </p>
 
 <div class="job-links">
 
-<a href="https://puyasoft.com"
-target="_blank">
+<a
+  href="https://puyasoft.com"
+  target="_blank"
+  rel="noopener"
+>
 puyasoft.com ↗
 </a>
 
@@ -1215,6 +2245,7 @@ puyasoft.com ↗
 </div>
 
 </article>
+
 
 
 <article class="job">
@@ -1230,18 +2261,29 @@ Pars Hooshmand Tadbir
 </h3>
 
 <div class="job-role">
-Senior Frontend Developer · React
+
+<span data-i18n="common.seniorFrontend">
+Senior Frontend Developer
+</span>
+
+·
+
+<span class="tech">
+React
+</span>
+
 </div>
 
-<p>
-Developed a React administration platform for
-Islamic Azad University with data-intensive forms
+<p data-i18n="experience.tadbir">
+Developed a React administration platform
+for Islamic Azad University with data-intensive forms
 and reusable components.
 </p>
 
 </div>
 
 </article>
+
 
 
 <article class="job">
@@ -1257,19 +2299,32 @@ Zar Tejarat Ruban
 </h3>
 
 <div class="job-role">
-Frontend Developer · React
+
+<span data-i18n="common.frontend">
+Frontend Developer
+</span>
+
+·
+
+<span class="tech">
+React
+</span>
+
 </div>
 
-<p>
-Developed the Ruban e-commerce frontend and
-back-office admin panel for product and inventory
-management workflows.
+<p data-i18n="experience.ruban">
+Developed the Ruban e-commerce frontend
+and back-office admin panel for product
+and inventory management workflows.
 </p>
 
 <div class="job-links">
 
-<a href="https://ruban.com"
-target="_blank">
+<a
+  href="https://ruban.com"
+  target="_blank"
+  rel="noopener"
+>
 ruban.com ↗
 </a>
 
@@ -1280,6 +2335,7 @@ ruban.com ↗
 </article>
 
 
+
 <article class="job">
 
 <div class="job-date">
@@ -1288,21 +2344,36 @@ Nov 2016 — May 2017
 
 <div>
 
-<h3>IVahid</h3>
+<h3>
+IVahid
+</h3>
 
 <div class="job-role">
-Frontend Developer · HTML · CSS · JavaScript
+
+<span data-i18n="common.frontend">
+Frontend Developer
+</span>
+
+·
+
+<span class="tech">
+HTML · CSS · JavaScript
+</span>
+
 </div>
 
-<p>
+<p data-i18n="experience.ivahid">
 Built responsive, cross-browser web applications
 from UI/UX designs for multiple client projects.
 </p>
 
 <div class="job-links">
 
-<a href="https://ivahid.com"
-target="_blank">
+<a
+  href="https://ivahid.com"
+  target="_blank"
+  rel="noopener"
+>
 ivahid.com ↗
 </a>
 
@@ -1320,19 +2391,26 @@ ivahid.com ↗
 </section>
 
 
+
 <section id="skills">
 
 <div class="wrap reveal">
+
 
 <div class="section-top">
 
 <div>
 
-<div class="eyebrow">
+<div
+  class="eyebrow"
+  data-i18n="skills.eyebrow"
+>
 Technical stack
 </div>
 
-<h2>
+<h2
+  data-i18n="skills.title"
+>
 Tools I use to ship
 </h2>
 
@@ -1346,7 +2424,9 @@ Tools I use to ship
 
 <div class="skill-card">
 
-<h3>Frontend</h3>
+<h3 data-i18n="skills.frontend">
+Frontend
+</h3>
 
 <div class="tags">
 
@@ -1365,7 +2445,9 @@ Tools I use to ship
 
 <div class="skill-card">
 
-<h3>State & Architecture</h3>
+<h3 data-i18n="skills.state">
+State & Architecture
+</h3>
 
 <div class="tags">
 
@@ -1384,7 +2466,9 @@ Tools I use to ship
 
 <div class="skill-card">
 
-<h3>Rendering & Performance</h3>
+<h3 data-i18n="skills.rendering">
+Rendering & Performance
+</h3>
 
 <div class="tags">
 
@@ -1402,7 +2486,9 @@ Tools I use to ship
 
 <div class="skill-card">
 
-<h3>Quality & Tooling</h3>
+<h3 data-i18n="skills.quality">
+Quality & Tooling
+</h3>
 
 <div class="tags">
 
@@ -1422,7 +2508,9 @@ Tools I use to ship
 
 <div class="skill-card">
 
-<h3>UI & Integration</h3>
+<h3 data-i18n="skills.ui">
+UI & Integration
+</h3>
 
 <div class="tags">
 
@@ -1440,7 +2528,9 @@ Tools I use to ship
 
 <div class="skill-card">
 
-<h3>AI & Data</h3>
+<h3 data-i18n="skills.ai">
+AI & Data
+</h3>
 
 <div class="tags">
 
@@ -1463,19 +2553,26 @@ Tools I use to ship
 </section>
 
 
+
 <section id="about">
 
 <div class="wrap reveal">
+
 
 <div class="section-top">
 
 <div>
 
-<div class="eyebrow">
+<div
+  class="eyebrow"
+  data-i18n="about.eyebrow"
+>
 About
 </div>
 
-<h2>
+<h2
+  data-i18n="about.title"
+>
 Product-minded frontend engineering
 </h2>
 
@@ -1486,16 +2583,16 @@ Product-minded frontend engineering
 
 <div class="about-grid">
 
+
 <div class="about-card">
 
-<p>
-I'm a Senior Frontend Developer with 10 years
-of experience building and scaling production
-web applications across fintech, payments,
-enterprise software, marketplaces and consumer products.
+<p data-i18n="about.p1">
+I'm a Senior Frontend Developer with 10 years of experience
+building and scaling production web applications across fintech,
+payments, enterprise software, marketplaces and consumer products.
 </p>
 
-<p>
+<p data-i18n="about.p2">
 I care about architecture that stays maintainable,
 interfaces that stay fast under real product pressure,
 and collaboration that makes teams more effective.
@@ -1506,25 +2603,58 @@ and collaboration that makes teams more effective.
 
 <div class="focus-list">
 
-<div class="focus-item">
-<span>Frontend Architecture</span>
-<span>systems / components</span>
-</div>
 
 <div class="focus-item">
-<span>Performance</span>
-<span>rendering / UX</span>
+
+<span data-i18n="focus.architecture">
+Frontend Architecture
+</span>
+
+<span>
+systems / components
+</span>
+
 </div>
 
-<div class="focus-item">
-<span>Team Leadership</span>
-<span>reviews / mentoring</span>
-</div>
 
 <div class="focus-item">
-<span>Product Delivery</span>
-<span>production / scale</span>
+
+<span data-i18n="focus.performance">
+Performance
+</span>
+
+<span>
+rendering / UX
+</span>
+
 </div>
+
+
+<div class="focus-item">
+
+<span data-i18n="focus.leadership">
+Team Leadership
+</span>
+
+<span>
+reviews / mentoring
+</span>
+
+</div>
+
+
+<div class="focus-item">
+
+<span data-i18n="focus.delivery">
+Product Delivery
+</span>
+
+<span>
+production / scale
+</span>
+
+</div>
+
 
 </div>
 
@@ -1535,23 +2665,32 @@ and collaboration that makes teams more effective.
 </section>
 
 
+
 <section id="contact">
 
 <div class="wrap reveal">
 
 <div class="contact-card">
 
+
 <div>
 
-<div class="eyebrow">
+<div
+  class="eyebrow"
+  data-i18n="contact.eyebrow"
+>
 Contact
 </div>
 
-<h2>
+<h2
+  data-i18n="contact.title"
+>
 Let's build something solid.
 </h2>
 
-<p>
+<p
+  data-i18n="contact.description"
+>
 Open to frontend engineering opportunities,
 product collaborations and technically challenging
 web projects.
@@ -1562,21 +2701,34 @@ web projects.
 
 <div class="contact-links">
 
-<a class="btn primary"
-href="mailto:i.karamisaeed@outlook.com">
+
+<a
+  class="btn primary"
+  href="mailto:i.karamisaeed@outlook.com"
+  data-i18n="contact.email"
+>
 Email me
 </a>
 
-<a class="btn secondary"
-href="tel:+989355178040">
+
+<a
+  class="btn secondary"
+  href="tel:+989355178040"
+  data-i18n="contact.call"
+>
 Call
 </a>
 
-<a class="btn secondary"
-href="https://www.linkedin.com/in/saeed-karami-3a31892a7"
-target="_blank">
+
+<a
+  class="btn secondary"
+  href="https://www.linkedin.com/in/saeed-karami-3a31892a7"
+  target="_blank"
+  rel="noopener"
+>
 LinkedIn ↗
 </a>
+
 
 </div>
 
@@ -1586,54 +2738,814 @@ LinkedIn ↗
 
 </section>
 
+
 </main>
+
 
 
 <footer>
 
 <div class="wrap footer-row">
 
-<span>
+
+<span data-i18n="footer.copyright">
 © 2026 Saeed Karami
 </span>
 
+
 <div class="footer-links">
 
-<a href="https://github.com/karami-saeed"
-target="_blank">
+<a
+  href="https://github.com/karami-saeed"
+  target="_blank"
+  rel="noopener"
+>
 GitHub
 </a>
 
-<a href="https://www.linkedin.com/in/saeed-karami-3a31892a7"
-target="_blank">
+<a
+  href="https://www.linkedin.com/in/saeed-karami-3a31892a7"
+  target="_blank"
+  rel="noopener"
+>
 LinkedIn
 </a>
 
-<a href="mailto:i.karamisaeed@outlook.com">
+<a
+  href="mailto:i.karamisaeed@outlook.com"
+>
 Email
 </a>
 
 </div>
+
 
 </div>
 
 </footer>
 
 
+
 <script>
 
-const items =
-document.querySelectorAll(".reveal");
+const translations = {
 
-if (
-  !("IntersectionObserver" in window) ||
-  window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches
+  en: {
+
+    nav: {
+      projects: "Projects",
+      experience: "Experience",
+      skills: "Skills",
+      about: "About",
+      contact: "Contact"
+    },
+
+    hero: {
+      role: "Senior Frontend Developer",
+
+      firstName: "Saeed",
+
+      lastName: "Karami",
+
+      description:
+        `I build <strong>scalable, high-performance web applications</strong>
+        with React, Next.js, TypeScript, Vue and Angular —
+        with a strong focus on frontend architecture,
+        rendering strategy, performance and product quality.`,
+
+      workButton:
+        "View selected work ↓"
+    },
+
+    terminal: {
+      role:
+        "Senior Frontend Developer",
+
+      location:
+        "Tehran, Iran"
+    },
+
+    metrics: {
+      years:
+        "years experience",
+
+      roles:
+        "professional roles",
+
+      frameworks:
+        "major frameworks",
+
+      projects:
+        "featured projects"
+    },
+
+    projects: {
+
+      eyebrow:
+        "Selected projects",
+
+      title:
+        "Things I've shipped",
+
+      description:
+        "A selection of production-oriented products focused on real user workflows, scalable frontend architecture and product delivery.",
+
+      mentor: {
+        type:
+          "Mentorship platform",
+
+        description:
+          "A platform for booking and managing 1:1 mentorship sessions, including mentor profiles, scheduling, booking and session management."
+      },
+
+      varzeshkar: {
+        type:
+          "Fitness platform",
+
+        description:
+          "AI-driven fitness planning with smart discovery and booking flows for trainers and gyms."
+      },
+
+      afagh: {
+        type:
+          "Travel platform",
+
+        description:
+          "Tourism and pilgrimage service management with online booking, secure payment flows and modular frontend architecture."
+      }
+
+    },
+
+    experience: {
+
+      eyebrow:
+        "Professional experience",
+
+      title:
+        "10 years in frontend engineering",
+
+      description:
+        "Fintech, payments, enterprise systems, streaming platforms and marketplaces — mostly in senior frontend roles.",
+
+      tosan:
+        "Led frontend architecture and development of the Taksa TSP PWA, implementing offline-first corporate tax workflows and reusable components.",
+
+      novin:
+        "Developed React/Next.js applications including a secure open-banking loan workflow, while improving maintainability through code reviews and merge-request standards.",
+
+      omid:
+        "Led a 5-person frontend team to refactor OmidPay and develop Nazar/Nanino platforms; integrated customized Metabase analytics dashboards.",
+
+      shenoto:
+        "Built Shenoto's admin dashboard and user-facing features for its audio-streaming platform.",
+
+      dapa:
+        "Developed the Baya marketplace and refactored Dapa frontend applications, improving component reuse and maintainability.",
+
+      pouya:
+        "Developed modular React components and state-management workflows for an enterprise financial and accounting ERP.",
+
+      tadbir:
+        "Developed a React administration platform for Islamic Azad University with data-intensive forms and reusable components.",
+
+      ruban:
+        "Developed the Ruban e-commerce frontend and back-office admin panel for product and inventory management workflows.",
+
+      ivahid:
+        "Built responsive, cross-browser web applications from UI/UX designs for multiple client projects."
+    },
+
+    common: {
+      seniorFrontend:
+        "Senior Frontend Developer",
+
+      frontend:
+        "Frontend Developer"
+    },
+
+    skills: {
+      eyebrow:
+        "Technical stack",
+
+      title:
+        "Tools I use to ship",
+
+      frontend:
+        "Frontend",
+
+      state:
+        "State & Architecture",
+
+      rendering:
+        "Rendering & Performance",
+
+      quality:
+        "Quality & Tooling",
+
+      ui:
+        "UI & Integration",
+
+      ai:
+        "AI & Data"
+    },
+
+    about: {
+
+      eyebrow:
+        "About",
+
+      title:
+        "Product-minded frontend engineering",
+
+      p1:
+        "I'm a Senior Frontend Developer with 10 years of experience building and scaling production web applications across fintech, payments, enterprise software, marketplaces and consumer products.",
+
+      p2:
+        "I care about architecture that stays maintainable, interfaces that stay fast under real product pressure, and collaboration that makes teams more effective."
+    },
+
+    focus: {
+
+      architecture:
+        "Frontend Architecture",
+
+      performance:
+        "Performance",
+
+      leadership:
+        "Team Leadership",
+
+      delivery:
+        "Product Delivery"
+    },
+
+    contact: {
+
+      eyebrow:
+        "Contact",
+
+      title:
+        "Let's build something solid.",
+
+      description:
+        "Open to frontend engineering opportunities, product collaborations and technically challenging web projects.",
+
+      email:
+        "Email me",
+
+      call:
+        "Call"
+    },
+
+    footer: {
+      copyright:
+        "© 2026 Saeed Karami"
+    }
+
+  },
+
+
+  fa: {
+
+    nav: {
+      projects: "پروژه‌ها",
+      experience: "تجربه کاری",
+      skills: "مهارت‌ها",
+      about: "درباره من",
+      contact: "ارتباط"
+    },
+
+    hero: {
+
+      role:
+        "توسعه‌دهنده ارشد فرانت‌اند",
+
+      firstName:
+        "سعید",
+
+      lastName:
+        "کرمی",
+
+      description:
+        `من اپلیکیشن‌های وب
+        <strong>مقیاس‌پذیر و با کارایی بالا</strong>
+        با React، Next.js، TypeScript، Vue و Angular توسعه می‌دهم
+        و تمرکز اصلی من روی معماری فرانت‌اند، استراتژی رندرینگ،
+        Performance و کیفیت محصول است.`,
+
+      workButton:
+        "مشاهده پروژه‌ها ↓"
+    },
+
+    terminal: {
+
+      role:
+        "Senior Frontend Developer",
+
+      location:
+        "Tehran, Iran"
+    },
+
+    metrics: {
+
+      years:
+        "سال تجربه",
+
+      roles:
+        "سابقه شغلی",
+
+      frameworks:
+        "فریم‌ورک اصلی",
+
+      projects:
+        "پروژه منتخب"
+    },
+
+    projects: {
+
+      eyebrow:
+        "پروژه‌های منتخب",
+
+      title:
+        "چیزهایی که ساخته‌ام",
+
+      description:
+        "نمونه‌ای از محصولاتی که با تمرکز بر کاربران واقعی، معماری مقیاس‌پذیر و کیفیت Production توسعه داده‌ام.",
+
+      mentor: {
+
+        type:
+          "پلتفرم منتورینگ",
+
+        description:
+          "پلتفرمی برای رزرو و مدیریت جلسات یک‌به‌یک منتورینگ شامل پروفایل منتورها، زمان‌بندی، رزرو و مدیریت جلسات."
+      },
+
+      varzeshkar: {
+
+        type:
+          "پلتفرم ورزشی",
+
+        description:
+          "پلتفرم برنامه‌ریزی ورزشی مبتنی بر هوش مصنوعی، جستجوی هوشمند و رزرو مربی و باشگاه."
+      },
+
+      afagh: {
+
+        type:
+          "پلتفرم گردشگری",
+
+        description:
+          "سامانه مدیریت خدمات گردشگری و زیارتی با رزرو آنلاین، پرداخت امن و معماری ماژولار فرانت‌اند."
+      }
+
+    },
+
+    experience: {
+
+      eyebrow:
+        "تجربه حرفه‌ای",
+
+      title:
+        "۱۰ سال تجربه در مهندسی فرانت‌اند",
+
+      description:
+        "تجربه در فین‌تک، پرداخت، سیستم‌های سازمانی، سرویس‌های استریم و مارکت‌پلیس‌ها؛ عمدتاً در نقش‌های ارشد فرانت‌اند.",
+
+      tosan:
+        "رهبری معماری و توسعه فرانت‌اند PWA سامانه Taksa TSP و پیاده‌سازی فرایندهای مالیاتی Offline-first و کامپوننت‌های قابل استفاده مجدد.",
+
+      novin:
+        "توسعه اپلیکیشن‌های React و Next.js شامل فرایند امن Open Banking برای دریافت تسهیلات و بهبود Maintainability از طریق Code Review و استانداردسازی Merge Request.",
+
+      omid:
+        "رهبری تیم ۵ نفره فرانت‌اند برای Refactor پلتفرم OmidPay و توسعه سامانه‌های Nazar و Nanino و یکپارچه‌سازی داشبوردهای تحلیلی Metabase.",
+
+      shenoto:
+        "توسعه پنل مدیریت Shenoto و قابلیت‌های کاربری پلتفرم پخش صوت با Vue و Angular.",
+
+      dapa:
+        "توسعه مارکت‌پلیس Baya و Refactor اپلیکیشن‌های Dapa با تمرکز بر استفاده مجدد از کامپوننت‌ها و Maintainability.",
+
+      pouya:
+        "توسعه کامپوننت‌های ماژولار React و State Management برای یک ERP مالی و حسابداری سازمانی.",
+
+      tadbir:
+        "توسعه سامانه مدیریت دانشگاه آزاد با React شامل فرم‌های داده‌محور و کامپوننت‌های قابل استفاده مجدد.",
+
+      ruban:
+        "توسعه فرانت‌اند فروشگاه اینترنتی Ruban و پنل مدیریت محصولات و موجودی.",
+
+      ivahid:
+        "توسعه اپلیکیشن‌های Responsive و Cross-browser از روی طرح‌های UI/UX برای پروژه‌های مختلف."
+    },
+
+    common: {
+
+      seniorFrontend:
+        "توسعه‌دهنده ارشد فرانت‌اند",
+
+      frontend:
+        "توسعه‌دهنده فرانت‌اند"
+    },
+
+    skills: {
+
+      eyebrow:
+        "تکنولوژی‌ها",
+
+      title:
+        "ابزارهایی که با آن‌ها محصول می‌سازم",
+
+      frontend:
+        "فرانت‌اند",
+
+      state:
+        "State Management و معماری",
+
+      rendering:
+        "Rendering و Performance",
+
+      quality:
+        "کیفیت و ابزارهای توسعه",
+
+      ui:
+        "UI و Integration",
+
+      ai:
+        "هوش مصنوعی و داده"
+    },
+
+    about: {
+
+      eyebrow:
+        "درباره من",
+
+      title:
+        "مهندسی فرانت‌اند با نگاه محصول‌محور",
+
+      p1:
+        "من یک توسعه‌دهنده ارشد فرانت‌اند با ۱۰ سال سابقه هستم و در توسعه و مقیاس‌پذیری اپلیکیشن‌های Production در حوزه‌های فین‌تک، پرداخت، نرم‌افزارهای سازمانی، مارکت‌پلیس و محصولات مصرف‌کننده تجربه دارم.",
+
+      p2:
+        "برای من معماری قابل نگهداری، رابط کاربری سریع در شرایط واقعی محصول و همکاری مؤثر داخل تیم اهمیت زیادی دارد."
+    },
+
+    focus: {
+
+      architecture:
+        "معماری فرانت‌اند",
+
+      performance:
+        "Performance",
+
+      leadership:
+        "رهبری تیم",
+
+      delivery:
+        "تحویل محصول"
+    },
+
+    contact: {
+
+      eyebrow:
+        "ارتباط با من",
+
+      title:
+        "بیایید یک محصول خوب بسازیم.",
+
+      description:
+        "برای فرصت‌های شغلی فرانت‌اند، همکاری روی محصولات و پروژه‌های فنی چالش‌برانگیز آماده همکاری هستم.",
+
+      email:
+        "ارسال ایمیل",
+
+      call:
+        "تماس"
+    },
+
+    footer: {
+      copyright:
+        "© ۲۰۲۶ سعید کرمی"
+    }
+
+  }
+
+};
+
+
+
+function getNestedValue(
+  object,
+  path
 ) {
 
-  items.forEach(
-    el => el.classList.add("visible")
+  return path
+    .split(".")
+    .reduce(
+      (current, key) =>
+        current?.[key],
+      object
+    );
+
+}
+
+
+
+const html =
+  document.documentElement;
+
+
+const langToggle =
+  document.getElementById(
+    "langToggle"
+  );
+
+
+const langLabel =
+  document.getElementById(
+    "langLabel"
+  );
+
+
+const themeToggle =
+  document.getElementById(
+    "themeToggle"
+  );
+
+
+const themeIcon =
+  document.getElementById(
+    "themeIcon"
+  );
+
+
+const menuToggle =
+  document.getElementById(
+    "menuToggle"
+  );
+
+
+const mobileMenu =
+  document.getElementById(
+    "mobileMenu"
+  );
+
+
+
+function setLanguage(
+  lang
+) {
+
+  const dictionary =
+    translations[lang];
+
+
+  document
+    .querySelectorAll(
+      "[data-i18n]"
+    )
+    .forEach(
+      element => {
+
+        const key =
+          element.dataset.i18n;
+
+
+        const value =
+          getNestedValue(
+            dictionary,
+            key
+          );
+
+
+        if (
+          value !== undefined
+        ) {
+
+          element.textContent =
+            value;
+
+        }
+
+      }
+    );
+
+
+  document
+    .querySelectorAll(
+      "[data-i18n-html]"
+    )
+    .forEach(
+      element => {
+
+        const key =
+          element.dataset.i18nHtml;
+
+
+        const value =
+          getNestedValue(
+            dictionary,
+            key
+          );
+
+
+        if (
+          value !== undefined
+        ) {
+
+          element.innerHTML =
+            value;
+
+        }
+
+      }
+    );
+
+
+  html.lang =
+    lang;
+
+
+  html.dir =
+    lang === "fa"
+      ? "rtl"
+      : "ltr";
+
+
+  langLabel.textContent =
+    lang === "fa"
+      ? "EN"
+      : "FA";
+
+
+  localStorage.setItem(
+    "portfolio-language",
+    lang
+  );
+
+}
+
+
+
+function setTheme(
+  theme
+) {
+
+  html.dataset.theme =
+    theme;
+
+
+  themeIcon.textContent =
+    theme === "dark"
+      ? "☀"
+      : "☾";
+
+
+  localStorage.setItem(
+    "portfolio-theme",
+    theme
+  );
+
+}
+
+
+
+const savedLanguage =
+  localStorage.getItem(
+    "portfolio-language"
+  ) || "en";
+
+
+const savedTheme =
+  localStorage.getItem(
+    "portfolio-theme"
+  );
+
+
+const systemDark =
+  window.matchMedia(
+    "(prefers-color-scheme: dark)"
+  ).matches;
+
+
+setLanguage(
+  savedLanguage
+);
+
+
+setTheme(
+  savedTheme ||
+  (
+    systemDark
+      ? "dark"
+      : "light"
+  )
+);
+
+
+
+langToggle.addEventListener(
+  "click",
+  () => {
+
+    const nextLanguage =
+      html.lang === "fa"
+        ? "en"
+        : "fa";
+
+
+    setLanguage(
+      nextLanguage
+    );
+
+  }
+);
+
+
+
+themeToggle.addEventListener(
+  "click",
+  () => {
+
+    const nextTheme =
+      html.dataset.theme === "dark"
+        ? "light"
+        : "dark";
+
+
+    setTheme(
+      nextTheme
+    );
+
+  }
+);
+
+
+
+menuToggle.addEventListener(
+  "click",
+  () => {
+
+    mobileMenu
+      .classList
+      .toggle(
+        "open"
+      );
+
+  }
+);
+
+
+
+mobileMenu
+  .querySelectorAll("a")
+  .forEach(
+    link => {
+
+      link.addEventListener(
+        "click",
+        () => {
+
+          mobileMenu
+            .classList
+            .remove(
+              "open"
+            );
+
+        }
+      );
+
+    }
+  );
+
+
+
+const revealItems =
+  document.querySelectorAll(
+    ".reveal"
+  );
+
+
+if (
+  !(
+    "IntersectionObserver"
+    in window
+  ) ||
+  window
+    .matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    )
+    .matches
+) {
+
+  revealItems.forEach(
+    element =>
+      element
+        .classList
+        .add(
+          "visible"
+        )
   );
 
 } else {
@@ -1642,27 +3554,42 @@ if (
     new IntersectionObserver(
       entries => {
 
-        entries.forEach(entry => {
+        entries.forEach(
+          entry => {
 
-          if(entry.isIntersecting) {
+            if (
+              entry.isIntersecting
+            ) {
 
-            entry.target
-              .classList.add("visible");
+              entry
+                .target
+                .classList
+                .add(
+                  "visible"
+                );
 
-            observer.unobserve(
-              entry.target
-            );
+
+              observer.unobserve(
+                entry.target
+              );
+
+            }
 
           }
-
-        });
+        );
 
       },
-      { threshold: .12 }
+      {
+        threshold: .12
+      }
     );
 
-  items.forEach(
-    el => observer.observe(el)
+
+  revealItems.forEach(
+    element =>
+      observer.observe(
+        element
+      )
   );
 
 }
